@@ -30,3 +30,15 @@ cd dragons-app
 npm install
 npm run dev
 ```
+
+Faça a instalação da dependências:
+
+```bash
+npm install
+```
+
+Execute o projeto:
+
+```bash
+npm run dev
+```
