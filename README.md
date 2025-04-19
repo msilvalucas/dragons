@@ -25,13 +25,13 @@ O objetivo do projeto Dragons é desenvolver uma interface para gerenciar dragõ
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/dragons-app.git
+git clone https://github.com/seuusuario/dragons.git
 ```
 
 Acesse a pasta do projeto:
 
 ```bash
-cd dragons-app
+cd dragons
 ```
 
 Faça a instalação da dependências:
