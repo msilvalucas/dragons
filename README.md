@@ -26,9 +26,12 @@ Clone o repositório:
 
 ```bash
 git clone https://github.com/seu-usuario/dragons-app.git
+```
+
+Acesse a pasta do projeto:
+
+```bash
 cd dragons-app
-npm install
-npm run dev
 ```
 
 Faça a instalação da dependências:
