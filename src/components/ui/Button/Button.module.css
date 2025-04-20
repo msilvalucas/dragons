@@ -1,0 +1,46 @@
+/* Button.module.css */
+button {
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+/* Variações */
+.primary {
+  background-color: #221f52;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #221f42;
+}
+
+.secondary {
+  background-color: #ed0973;
+  color: white;
+}
+
+.secondary:hover {
+  background-color: #bc075b;
+}
+
+.danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+.danger:hover {
+  background-color: #dc2626;
+}
+
+.warning {
+  background-color: #f59e0b;
+  color: black;
+}
+
+.warning:hover {
+  background-color: #d97706;
+}
