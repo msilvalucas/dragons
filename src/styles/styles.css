@@ -1,0 +1,72 @@
+:root {
+  --primary-color: #221f52;
+  --primary-hover: #221f42;
+  --secondary-color: #ed0973;
+  --secondary-hover: #bc075b;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --warning-color: #f59e0b;
+  --warning-hover: #d97706;
+
+  --ghost-border: #e2e8f0;
+  --ghost-hover: #f8fafc;
+
+  --text-dark: #221f52;
+  --text-light: white;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'ProductSans', sans-serif;
+  color: var(--text-dark);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'TTSupermolot';
+  src: url('/fonts/TTSupermolot.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ProductSans';
+  src: url('/fonts/ProductSans.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: 'ProductSans', sans-serif;
+  border-radius: var(--radius-md);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
