@@ -1,15 +1,16 @@
-import { Button } from './components/ui/Button/Button';
-import { Input } from './components/ui/Input/Input';
+import { BrowserRouter } from 'react-router';
+
+import { AuthProvider } from './context/auth/AuthContext';
+
+import { Router } from './routes';
 
 function App() {
   return (
-    <div>
-      <Input label="E-mail" type="email" />
-      <Button variant="primary">Primário</Button>
-      <Button variant="secondary">Secundário</Button>
-      <Button variant="danger">Perigo</Button>
-      <Button variant="warning">Aviso</Button>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
