@@ -5,7 +5,7 @@ type Variant = 'primary' | 'secondary' | 'danger' | 'warning' | 'ghost';
 type Size = 'sm' | 'md' | 'lg';
 type IconPosition = 'left' | 'right';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ComponentProps<'button'> {
   variant?: Variant;
   size?: Size;
   icon?: React.ReactNode;
