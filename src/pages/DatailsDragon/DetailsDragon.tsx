@@ -1,4 +1,3 @@
-// src/pages/DragonDetails/DragonDetails.tsx
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
