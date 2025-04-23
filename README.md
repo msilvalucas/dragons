@@ -25,7 +25,7 @@ O objetivo do projeto Dragons é desenvolver uma interface para gerenciar dragõ
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seuusuario/dragons.git
+git clone https://github.com/msilvalucas/dragons
 ```
 
 Acesse a pasta do projeto:
