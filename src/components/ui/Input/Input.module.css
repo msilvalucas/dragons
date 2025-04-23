@@ -11,7 +11,33 @@
   color: var(--text-light);
 }
 
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggleIcon {
+  position: absolute;
+  right: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* se quiser, ajuste o padding do input para não ficar colado no ícone */
+/* .input {
+  width: ;
+  padding-right: calc(var(--space-lg) + 1.5rem);
+} */
+
 .input {
+  flex: 1;
   padding: var(--space-md) var(--space-lg);
   border-radius: var(--radius-sm);
   font-size: 1rem;
