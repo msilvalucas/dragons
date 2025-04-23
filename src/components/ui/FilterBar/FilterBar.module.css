@@ -1,0 +1,35 @@
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+select {
+  flex: 1;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  border: 1px solid var(--ghost-border);
+  background-color: white;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(237, 9, 115, 0.3);
+}
+
+.selectError {
+  border-color: var(--danger-color);
+  background-color: #fff5f5;
+}
+
+.errorMessage {
+  color: var(--danger-color);
+  font-size: 0.875rem;
+  margin-top: var(--space-xs);
+}
