@@ -1,6 +1,5 @@
-// src/pages/RegisterDragon/RegisterDragon.tsx
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useParams } from 'react-router'; // troque o import
+import { useNavigate, useParams } from 'react-router';
 import { DragonInterface } from '@/types/dragon';
 import { dragonService } from '@/services/dragon';
 import { DragonForm } from '@/components/dragon/DragonForm';
@@ -25,7 +24,7 @@ export default function RegisterDragon() {
   const [initialValues, setInitialValues] = useState<DragonInterface | null>(
     null,
   );
-  const [isLoading, setIsLoading] = useState(isEditing); // carrega só quando editar
+  const [isLoading, setIsLoading] = useState(isEditing);
 
   useEffect(() => {
     if (isEditing && id) {
