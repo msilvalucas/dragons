@@ -10,7 +10,7 @@ export function AuthGuard({ isPrivate }: { isPrivate: boolean }) {
   }
 
   if (!signedIn && isPrivate) {
-    return <Navigate to="/sign-in" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return <Outlet />;
