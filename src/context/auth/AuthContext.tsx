@@ -1,97 +1,83 @@
-import { createContext, useCallback, useLayoutEffect, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 
-import { api } from '@/services/api';
-
-import { storageKeys } from '@/config/storageKeys';
-import { AuthService } from '@/services/auth';
-
-interface IAuthContextValue {
+import { useToast } from '@/hooks/toast/useToast';
+interface AuthContextValue {
   signedIn: boolean;
-  signIn(email: string, password: string): Promise<void>;
+  signIn(email: string, password: string): Promise<string | void>;
+  signUp(email: string, password: string): Promise<string | void>;
   signOut(): void;
 }
+interface UserInterface {
+  email: string;
+  password: string;
+}
 
-export const AuthContext = createContext({} as IAuthContextValue);
+export const AuthContext = createContext({} as AuthContextValue);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [signedIn, setSignedIn] = useState(() => {
-    return !!localStorage.getItem(storageKeys.accessToken);
-  });
+  const [signedIn, setSignedIn] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
-    console.log('Add request interceptor');
+  const { toast } = useToast();
 
-    const interceptorId = api.interceptors.request.use((config) => {
-      console.log(config.url);
-
-      const accessToken = localStorage.getItem(storageKeys.accessToken);
-
-      if (accessToken) {
-        config.headers.set('Authorization', `Bearer ${accessToken}`);
-      }
-
-      return config;
-    });
-
-    return () => {
-      api.interceptors.request.eject(interceptorId);
-    };
+  useEffect(() => {
+    const token = localStorage.getItem('user_token');
+    if (token) {
+      setSignedIn(true);
+    }
   }, []);
 
-  useLayoutEffect(() => {
-    console.log('Add response interceptor');
+  const getUserByEmail = (email: string) => {
+    const users = JSON.parse(localStorage.getItem('users_bd') || '[]');
+    return users.find((user: UserInterface) => user.email === email);
+  };
 
-    const interceptorId = api.interceptors.response.use(
-      (response) => response,
-      async (error) => {
-        const originalRequest = error.config;
-        const refreshToken = localStorage.getItem(storageKeys.refreshToken);
+  const signIn = useCallback(
+    async (email: string, password: string) => {
+      const user = getUserByEmail(email);
 
-        if (originalRequest.url === '/refresh-token') {
-          setSignedIn(false);
-          localStorage.clear();
-          return Promise.reject(error);
-        }
+      if (!user) return toast('error', 'Usuário não encontrado');
 
-        if (error.response?.status !== 401 || !refreshToken) {
-          return Promise.reject(error);
-        }
+      if (user.password !== password)
+        return toast('error', 'E-mail ou senha incorretos');
 
-        const { accessToken, refreshToken: newRefreshToken } =
-          await AuthService.refreshToken(refreshToken);
+      const token = Math.random().toString(36).substring(2);
+      localStorage.setItem('user_token', JSON.stringify({ email, token }));
+      toast('success', 'Usuário logado!');
+      setSignedIn(true);
+    },
+    [toast],
+  );
 
-        localStorage.setItem(storageKeys.accessToken, accessToken);
-        localStorage.setItem(storageKeys.refreshToken, newRefreshToken);
+  const signUp = useCallback(
+    async (email: string, password: string) => {
+      const users = JSON.parse(localStorage.getItem('users_bd') || '[]');
 
-        return api(originalRequest);
-      },
-    );
+      const existingUser = users.find(
+        (user: UserInterface) => user.email === email,
+      );
 
-    return () => {
-      api.interceptors.response.eject(interceptorId);
-    };
-  }, []);
+      if (existingUser) return toast('warning', 'E-mail já cadastrados');
 
-  const signIn = useCallback(async (email: string, password: string) => {
-    const { accessToken, refreshToken } = await AuthService.signIn({
-      email,
-      password,
-    });
+      const updatedUsers = [...users, { email, password }];
+      localStorage.setItem('users_bd', JSON.stringify(updatedUsers));
 
-    localStorage.setItem(storageKeys.accessToken, accessToken);
-    localStorage.setItem(storageKeys.refreshToken, refreshToken);
-
-    setSignedIn(true);
-  }, []);
+      const token = Math.random().toString(36).substring(2);
+      localStorage.setItem('user_token', JSON.stringify({ email, token }));
+      toast('success', 'Seja bem-vido ao DBDragons');
+      setSignedIn(true);
+    },
+    [toast],
+  );
 
   const signOut = useCallback(() => {
-    localStorage.clear();
+    localStorage.removeItem('user_token');
     setSignedIn(false);
   }, []);
 
-  const value: IAuthContextValue = {
+  const value: AuthContextValue = {
     signedIn,
     signIn,
+    signUp,
     signOut,
   };
 
