@@ -1,9 +1,26 @@
-.listContainer {
+.listContainer,
+.filterContainer {
   max-width: 1400px;
   width: 100%;
-  margin: 0 auto;
+  margin: 1rem auto;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+}
+
+.filterContainer {
+  padding: 1rem;
+  justify-content: space-evenly;
+}
+
+.filterContainer div {
+  flex: 1;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
 }
