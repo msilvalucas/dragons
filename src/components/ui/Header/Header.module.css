@@ -1,0 +1,31 @@
+.header {
+  padding: var(--space-lg);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.headerContainer {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.logo,
+.logo:hover {
+  font-family: 'TTSupermolot', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.logoAccent {
+  color: var(--secondary-color);
+}
