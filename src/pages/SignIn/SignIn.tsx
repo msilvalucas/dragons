@@ -10,6 +10,7 @@ import { Typography } from '@/components/ui/Typography';
 import styles from './SignIn.module.css';
 
 import DRAGON_IMAGE from '@/assets/bg-login.jpg';
+import { Link } from 'react-router';
 
 export function SignIn() {
   const { signIn } = useContext(AuthContext);
@@ -25,6 +26,7 @@ export function SignIn() {
     }),
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
+        setSubmitting(true);
         await signIn(values.email, values.password);
       } catch (error: any) {
         setErrors({ password: error.message });
@@ -42,7 +44,7 @@ export function SignIn() {
 
       <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
         <Typography variant="title" as="h2" color="light">
-          Bem-vindo ao mundo dos Dragões
+          Acesse sua conta
         </Typography>
 
         <Input
@@ -66,7 +68,7 @@ export function SignIn() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.password && formik.errors.password}
-          className={styles.inputLabel}
+          showPasswordToggle
         />
 
         <Button
@@ -76,8 +78,19 @@ export function SignIn() {
           variant="secondary"
           size="lg"
         >
-          Entrar
+          {formik.isSubmitting ? 'Entrando...' : 'Entrar'}
         </Button>
+
+        <Link to="/cadastro">
+          <Typography
+            as="a"
+            variant="subtitle"
+            color="secondary"
+            className={styles.link}
+          >
+            Não tem conta? Cadastre-se!
+          </Typography>
+        </Link>
       </form>
     </div>
   );
