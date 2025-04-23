@@ -5,6 +5,8 @@ import { DragonInterface } from '@/types/dragon';
 import { Button } from '@/components/ui/Button';
 import { Typography } from '@/components/ui/Typography';
 
+import { formatDateBR } from '@/utils/date';
+
 import styles from './DragonCard.module.css';
 
 import DEFAULT_IMAGE from '@/assets/dragon-defaul.jpg';
@@ -37,11 +39,18 @@ export function DragonCard({
               {dragon.name}
             </Typography>
 
-            <Typography as="p" color="light" margin="lg">
+            <Typography as="p" color="light" margin="sm">
               <Typography as="strong" weight="bold" color="secondary">
                 Tipo:
               </Typography>{' '}
               {dragon.type}
+            </Typography>
+
+            <Typography as="p" color="light" margin="lg">
+              <Typography as="strong" weight="bold" color="secondary">
+                Criado em:
+              </Typography>{' '}
+              {formatDateBR(dragon.createdAt)}
             </Typography>
 
             <div className={styles.actions}>
